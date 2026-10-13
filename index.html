@@ -3,25 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ΑΙΤΗΣΕΙΣ ΠΛΗΓΕΝΤΩΝ ΥΠΟΨΗΦΙΩΝ ΠΑΝΕΛΛΑΔΙΚΩΝ - 10ο Λύκειο Μαρκοπούλου</title>
+<title>10ο Λύκειο Μαρκοπούλου - Τελευταία Άρθρα</title>
 <style>
-  body { font-family:'Segoe UI',sans-serif; background:#f4f6fb; color:#2c3e50; margin:0; line-height:1.7; }
-  header { background:linear-gradient(135deg,#1e3c72,#2a5298); color:#fff; padding:25px; text-align:center; }
-  .container { max-width:800px; margin:30px auto; padding:30px; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); }
-  h1 { color:#1e3c72; }
-  .date { color:#f39c12; font-weight:bold; margin-bottom:20px; }
-  a.back { display:inline-block; margin-bottom:20px; color:#2a5298; text-decoration:none; font-weight:bold; }
-  a.back:hover { color:#f39c12; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6fb;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+  header h1 {
+    font-size: 2em;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  header p {
+    font-size: 0.95em;
+    opacity: 0.9;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    background: #16305c;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 22px;
+    border-radius: 6px;
+    font-size: 0.95em;
+    transition: background 0.25s;
+  }
+  nav a:hover { background: #2a5298; }
+  nav a.active { background: #f39c12; color: #fff; }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-size: 1.7em;
+    color: #1e3c72;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #f39c12;
+    display: inline-block;
+  }
+
+  /* ===== ARTICLE CARDS ===== */
+  .articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 22px;
+  }
+
+  .article-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+  }
+
+  .article-card .thumb {
+    height: 150px;
+    background: linear-gradient(135deg, #2a5298, #1e3c72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2.5em;
+  }
+
+  .article-card .content {
+    padding: 18px 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-card .date {
+    font-size: 0.8em;
+    color: #f39c12;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .article-card h3 {
+    font-size: 1.15em;
+    color: #1e3c72;
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+
+  .article-card p {
+    font-size: 0.92em;
+    color: #556;
+    flex: 1;
+    margin-bottom: 15px;
+  }
+
+  .article-card .btn {
+    align-self: flex-start;
+    background: #2a5298;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    transition: background 0.25s;
+  }
+  .article-card .btn:hover { background: #f39c12; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #1e3c72;
+    color: #cfd8e3;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 60px;
+    font-size: 0.9em;
+  }
+  footer a { color: #f39c12; text-decoration: none; }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5em; }
+    .section-title { font-size: 1.35em; }
+  }
 </style>
 </head>
 <body>
-  <header><h1>🏫 10ο Λύκειο Μαρκοπούλου</h1></header>
+
+  <!-- HEADER -->
+  <header>
+    <h1>🏫 10ο Λύκειο Μαρκοπούλου</h1>
+    <p>Ενημέρωση, Νέα & Άρθρα</p>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="active">Αρχική</a>
+    <a href="anakoinoseis.html">Ανακοινώσεις</a>
+  </nav>
+
+  <!-- MAIN -->
   <div class="container">
-    <a href="../index.html" class="back">← Πίσω στην αρχική</a>
-    <h1>ΑΙΤΗΣΕΙΣ ΠΛΗΓΕΝΤΩΝ ΥΠΟΨΗΦΙΩΝ ΠΑΝΕΛΛΑΔΙΚΩΝ</h1>
-    <div class="date">13/10/2026</div>
-    <p>Ενημέρωση για τις αιτήσεις των πληγέντων υποψηφίων των Πανελλαδικών εξετάσεων.</p>
-    <p>Για περισσότερες πληροφορίες, επικοινωνήστε με τη γραμματεία του σχολείου.</p>
+    <h2 class="section-title">📰 Τελευταία Άρθρα</h2>
+
+    <div class="articles">
+
+      <div class="article-card">
+        <div class="thumb">📅</div>
+        <div class="content">
+          <div class="date">13/10/2026</div>
+          <h3>Πρόγραμμα</h3>
+          <p>Ανακοινώθηκε το νέο πρόγραμμα μαθημάτων για όλες τις τάξεις του Λυκείου.</p>
+          <a href="arthra/arthro1.html" class="btn">Διάβασε →</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="thumb">🎓</div>
+        <div class="content">
+          <div class="date">13/10/2026</div>
+          <h3>ΑΙΤΗΣΕΙΣ ΠΛΗΓΕΝΤΩΝ ΥΠΟΨΗΦΙΩΝ ΠΑΝΕΛΛΑΔΙΚΩΝ</h3>
+          <p>Ενημέρωση για τις αιτήσεις των πληγέντων υποψηφίων των Πανελλαδικών εξετάσεων.</p>
+          <a href="arthra/arthro2.html" class="btn">Διάβασε →</a>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 10ο Λύκειο Μαρκοπούλου — Όλα τα δικαιώματα διατηρούνται</p>
+    <p style="margin-top:8px;">📧 <a href="mailto:info@lyk-markop.att.sch.gr">info@lyk-markop.att.sch.gr</a></p>
+  </footer>
+
 </body>
 </html>
