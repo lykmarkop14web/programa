@@ -1,263 +1,359 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Άρθρο 1 - 1ο ΓΕΛ Μαρκοπούλου</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Πρόγραμμα - 10ο Λύκειο Μαρκοπούλου</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
 
-        body {
-            background: linear-gradient(145deg, #f7f3ec 0%, #efe7db 100%);
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            min-height: 100vh;
-            padding: 30px 20px;
-            color: #1e1e1e;
-            display: flex;
-            justify-content: center;
-        }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6fb;
+    color: #2c3e50;
+    line-height: 1.65;
+  }
 
-        .article-container {
-            max-width: 780px;
-            width: 100%;
-            background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px -20px rgba(30, 58, 95, 0.25);
-            padding: 50px 45px;
-            position: relative;
-            overflow: hidden;
-        }
+  /* ===== HEADER ===== */
+  header.top {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+  header.top h1 { font-size: 1.8em; letter-spacing: 0.5px; }
 
-        /* Διακοσμητική χρυσή λωρίδα στην κορυφή */
-        .article-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #cda85f 0%, #b8934a 50%, #e9cf94 100%);
-        }
+  /* ===== WRAPPER ===== */
+  .wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
 
-        /* Breadcrumb / πλοήγηση */
-        .breadcrumb {
-            font-size: 14px;
-            color: #8a7c68;
-            margin-bottom: 25px;
-            letter-spacing: 0.3px;
-        }
+  a.back {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: color 0.2s;
+  }
+  a.back:hover { color: #f39c12; }
 
-        .breadcrumb a {
-            color: #1e5ba6;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
+  /* ===== ΚΥΡΙΩΣ ΑΡΘΡΟ ===== */
+  .container {
+    background: white;
+    border-radius: 2rem;
+    box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.15);
+    padding: 2.5rem;
+  }
 
-        .breadcrumb a:hover {
-            color: #b8934a;
-            text-decoration: underline;
-        }
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #d0ddee;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
 
-        /* Τίτλος άρθρου */
-        h1 {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1e3a5f;
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-            margin-bottom: 12px;
-        }
+  .title-section h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0b2b4a;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .title-section h1 span {
+    background: #eef4ff;
+    padding: 0.2rem 1rem;
+    border-radius: 60px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1f4e8c;
+  }
 
-        /* Ημερομηνία & κατηγορία */
-        .meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            font-size: 14px;
-            color: #7a6a55;
-            margin-bottom: 30px;
-            padding-bottom: 22px;
-            border-bottom: 2px dashed #e0d6c5;
-        }
+  .subhead {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #3f5a78;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.8rem;
+  }
+  .subhead .badge {
+    background: #e8edf5;
+    padding: 0.2rem 0.9rem;
+    border-radius: 24px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1f4e8c;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
 
-        .meta .date {
-            background: #faf6ef;
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-weight: 600;
-            color: #b8934a;
-            border: 1px solid #ecdfc9;
-        }
+  .protocol {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #4b5f77;
+    background: #f6faff;
+    padding: 0.8rem 1.4rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    border: 1px solid #d7e2f0;
+  }
+  .protocol strong { color: #0b2b4a; display: block; font-size: 1.05rem; }
 
-        .meta .category {
-            background: #eef4fc;
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-weight: 600;
-            color: #1e5ba6;
-            border: 1px solid #d3e2f5;
-        }
+  /* ===== TABS ===== */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #dfeaff;
+    padding-bottom: 12px;
+  }
+  .tab-btn {
+    background: #eef4fc;
+    border: 1px solid #d3e2f5;
+    color: #1e4b7c;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn:hover {
+    background: #dbe8fb;
+  }
+  .tab-btn.active {
+    background: #1e5ba6;
+    color: #fff;
+    border-color: #1e5ba6;
+  }
 
-        /* Κύριο κείμενο άρθρου */
-        .article-content {
-            font-size: 17px;
-            line-height: 1.8;
-            color: #2c3e50;
-        }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
 
-        .article-content p {
-            margin-bottom: 20px;
-        }
+  /* ===== TABLE ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.92rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  thead {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+  }
+  th, td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid #e2ecf9;
+  }
+  th {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: #1e3c72;
+    background: #f7faff;
+    padding-left: 15px;
+  }
+  tbody tr:hover { background: #f0f7ff; }
+  tbody tr:last-child td { border-bottom: none; }
 
-        .article-content h2 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e3a5f;
-            margin: 35px 0 15px;
-            padding-left: 14px;
-            border-left: 5px solid #cda85f;
-        }
+  /* ===== INFO BOX ===== */
+  .info-box {
+    background: #fff8e8;
+    border-left: 5px solid #f39c12;
+    padding: 18px 22px;
+    border-radius: 8px;
+    margin-top: 25px;
+  }
+  .info-box p {
+    margin: 0;
+    color: #7a5a12;
+    font-size: 0.96em;
+  }
 
-        .article-content ul,
-        .article-content ol {
-            margin: 15px 0 20px 25px;
-        }
+  /* ===== FOOTER ===== */
+  footer.bottom {
+    background: #1e3c72;
+    color: #cfd8e3;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 60px;
+    font-size: 0.9em;
+  }
+  footer.bottom a { color: #f39c12; text-decoration: none; }
 
-        .article-content li {
-            margin-bottom: 8px;
-        }
-
-        .article-content a {
-            color: #1e5ba6;
-            font-weight: 600;
-            text-decoration: none;
-            border-bottom: 1px dotted #1e5ba6;
-        }
-
-        .article-content a:hover {
-            color: #b8934a;
-            border-bottom-color: #b8934a;
-        }
-
-        /* Highlight box */
-        .article-content blockquote {
-            background: #fdfaf3;
-            border-left: 5px solid #cda85f;
-            padding: 18px 22px;
-            margin: 25px 0;
-            border-radius: 0 12px 12px 0;
-            font-style: italic;
-            color: #5a4e3d;
-        }
-
-        /* Κουμπί επιστροφής */
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 40px;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #6ba8e8 0%, #357abd 50%, #1e5ba6 100%);
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(53, 122, 189, 0.35);
-            transition: transform 0.25s ease, box-shadow 0.3s ease;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 32px rgba(53, 122, 189, 0.45);
-        }
-
-        .back-btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 6px 14px rgba(53, 122, 189, 0.4);
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            body { padding: 15px 12px; }
-            .article-container { padding: 35px 22px; border-radius: 18px; }
-            h1 { font-size: 26px; }
-            .article-content { font-size: 16px; }
-            .article-content h2 { font-size: 20px; }
-            .back-btn { width: 100%; justify-content: center; }
-        }
-
-        @media (max-width: 360px) {
-            h1 { font-size: 22px; }
-            .article-content { font-size: 15px; }
-        }
-    </style>
+  @media (max-width: 800px) {
+    .container { padding: 1.5rem 1rem; }
+    .header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .protocol { text-align: left; width: 100%; }
+    .title-section h1 { font-size: 1.5rem; }
+    table { font-size: 0.8rem; }
+    th, td { padding: 7px 4px; }
+  }
+</style>
 </head>
 <body>
 
-    <article class="article-container">
+  <!-- HEADER -->
+  <header class="top">
+    <h1>🏫 10ο Λύκειο Μαρκοπούλου</h1>
+  </header>
 
-        <!-- Πλοήγηση -->
-        <div class="breadcrumb">
-            <a href="../index.html">🏠 Αρχική</a> &nbsp;›&nbsp; <span>Άρθρα</span> &nbsp;›&nbsp; <span>Άρθρο 1</span>
+  <div class="wrapper">
+    <a href="../index.html" class="back">← Πίσω στην αρχική</a>
+
+    <div class="container">
+      <!-- header -->
+      <div class="header">
+        <div class="title-section">
+          <h1>
+            📅 Πρόγραμμα Μαθημάτων
+            <span>2025-2026</span>
+          </h1>
+          <div class="subhead">
+            <div class="badge">Όλες οι τάξεις</div>
+            <div class="badge">Εβδομαδιαίο</div>
+            <div>Ισχύει από 13/10/2026</div>
+          </div>
         </div>
-
-        <!-- Τίτλος -->
-        <h1>Τίτλος του Άρθρου 1</h1>
-
-        <!-- Meta πληροφορίες -->
-        <div class="meta">
-            <span class="date">📅 14 Οκτωβρίου 2026</span>
-            <span class="category">📌 Ανακοινώσεις</span>
+        <div class="protocol">
+          <strong>Απόφαση Συλλόγου</strong>
+          13 Οκτωβρίου 2026
         </div>
+      </div>
 
-        <!-- Κύριο κείμενο -->
-        <div class="article-content">
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('a-lykeiou')">Α' Λυκείου</button>
+        <button class="tab-btn" onclick="showTab('b-lykeiou')">Β' Λυκείου</button>
+        <button class="tab-btn" onclick="showTab('c-lykeiou')">Γ' Λυκείου</button>
+      </div>
 
-            <p>
-                Εδώ γράφεις την <strong>εισαγωγική παράγραφο</strong> του άρθρου. 
-                Μπορείς να χρησιμοποιείς έντονα γράμματα, πλάγια, ή όποια άλλη μορφοποίηση θέλεις.
-            </p>
+      <!-- Α' ΛΥΚΕΙΟΥ -->
+      <div id="a-lykeiou" class="tab-content active">
+        <table>
+          <thead>
+            <tr>
+              <th>Ώρα</th>
+              <th>Δευτέρα</th>
+              <th>Τρίτη</th>
+              <th>Τετάρτη</th>
+              <th>Πέμπτη</th>
+              <th>Παρασκευή</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1η</td><td>Γλώσσα</td><td>Μαθηματικά</td><td>Φυσική</td><td>Γλώσσα</td><td>Μαθηματικά</td></tr>
+            <tr><td>2η</td><td>Μαθηματικά</td><td>Γλώσσα</td><td>Χημεία</td><td>Μαθηματικά</td><td>Γλώσσα</td></tr>
+            <tr><td>3η</td><td>Αγγλικά</td><td>Φυσική</td><td>Γλώσσα</td><td>Βιολογία</td><td>Αγγλικά</td></tr>
+            <tr><td>4η</td><td>Φυσική</td><td>Αγγλικά</td><td>Μαθηματικά</td><td>Αγγλικά</td><td>Φυσική</td></tr>
+            <tr><td>5η</td><td>Πληροφορική</td><td>Βιολογία</td><td>Πληροφορική</td><td>Ιστορία</td><td>Πληροφορική</td></tr>
+            <tr><td>6η</td><td>Ιστορία</td><td>Πληροφορική</td><td>Θρησκευτικά</td><td>Φιλοσοφία</td><td>Ιστορία</td></tr>
+            <tr><td>7η</td><td>Φιλοσοφία</td><td>Θρησκευτικά</td><td>Φιλοσοφία</td><td>Θρησκευτικά</td><td>Φιλοσοφία</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-            <p>
-                Δεύτερη παράγραφος με περισσότερες λεπτομέρειες. 
-                Αν έχεις σύνδεσμο, μπορείς να τον βάλεις <a href="#">έτσι</a>.
-            </p>
+      <!-- Β' ΛΥΚΕΙΟΥ -->
+      <div id="b-lykeiou" class="tab-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Ώρα</th>
+              <th>Δευτέρα</th>
+              <th>Τρίτη</th>
+              <th>Τετάρτη</th>
+              <th>Πέμπτη</th>
+              <th>Παρασκευή</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1η</td><td>Μαθηματικά</td><td>Γλώσσα</td><td>Φυσική</td><td>Μαθηματικά</td><td>Χημεία</td></tr>
+            <tr><td>2η</td><td>Γλώσσα</td><td>Μαθηματικά</td><td>Χημεία</td><td>Γλώσσα</td><td>Μαθηματικά</td></tr>
+            <tr><td>3η</td><td>Φυσική</td><td>Βιολογία</td><td>Μαθηματικά</td><td>Φυσική</td><td>Γλώσσα</td></tr>
+            <tr><td>4η</td><td>Βιολογία</td><td>Φυσική</td><td>Αγγλικά</td><td>Βιολογία</td><td>Αγγλικά</td></tr>
+            <tr><td>5η</td><td>Αγγλικά</td><td>Πληροφορική</td><td>Ιστορία</td><td>Αγγλικά</td><td>Πληροφορική</td></tr>
+            <tr><td>6η</td><td>Πληροφορική</td><td>Ιστορία</td><td>Φιλοσοφία</td><td>Πληροφορική</td><td>Θρησκευτικά</td></tr>
+            <tr><td>7η</td><td>Θρησκευτικά</td><td>Φιλοσοφία</td><td>Θρησκευτικά</td><td>Φιλοσοφία</td><td>Ιστορία</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-            <h2>Υπότιτλος ενότητας</h2>
+      <!-- Γ' ΛΥΚΕΙΟΥ -->
+      <div id="c-lykeiou" class="tab-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Ώρα</th>
+              <th>Δευτέρα</th>
+              <th>Τρίτη</th>
+              <th>Τετάρτη</th>
+              <th>Πέμπτη</th>
+              <th>Παρασκευή</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1η</td><td>Νεοελληνική</td><td>Αρχαία</td><td>Ιστορία</td><td>Νεοελληνική</td><td>Αρχαία</td></tr>
+            <tr><td>2η</td><td>Αρχαία</td><td>Νεοελληνική</td><td>Νεοελληνική</td><td>Αρχαία</td><td>Ιστορία</td></tr>
+            <tr><td>3η</td><td>Λατινικά</td><td>Λατινικά</td><td>Αρχαία</td><td>Λατινικά</td><td>Νεοελληνική</td></tr>
+            <tr><td>4η</td><td>Ιστορία</td><td>Ιστορία</td><td>Λατινικά</td><td>Ιστορία</td><td>Λατινικά</td></tr>
+            <tr><td>5η</td><td>Αγγλικά</td><td>Πληροφορική</td><td>Φιλοσοφία</td><td>Αγγλικά</td><td>Πληροφορική</td></tr>
+            <tr><td>6η</td><td>Πληροφορική</td><td>Φιλοσοφία</td><td>Αγγλικά</td><td>Πληροφορική</td><td>Φιλοσοφία</td></tr>
+            <tr><td>7η</td><td>Θρησκευτικά</td><td>Θρησκευτικά</td><td>Θρησκευτικά</td><td>Φιλοσοφία</td><td>Θρησκευτικά</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-            <p>
-                Κείμενο κάτω από τον υπότιτλο. Μπορείς να χρησιμοποιήσεις λίστες:
-            </p>
+      <div class="info-box">
+        <p><strong>📌 Σημείωση:</strong> Το πρόγραμμα είναι ενδεικτικό και μπορεί να αλλάξει κατόπιν απόφασης του Συλλόγου Διδασκόντων. Για επίσημες αλλαγές, ενημερωθείτε από τη γραμματεία του σχολείου.</p>
+      </div>
 
-            <ul>
-                <li>Πρώτο σημείο</li>
-                <li>Δεύτερο σημείο</li>
-                <li>Τρίτο σημείο</li>
-            </ul>
+    </div>
+  </div>
 
-            <blockquote>
-                💡 Εδώ μπορείς να βάλεις ένα σημαντικό απόσπασμα ή μήνυμα που θέλεις να ξεχωρίζει.
-            </blockquote>
+  <!-- FOOTER -->
+  <footer class="bottom">
+    <p>© 2026 10ο Λύκειο Μαρκοπούλου — Όλα τα δικαιώματα διατηρούνται</p>
+    <p style="margin-top:8px;">📧 <a href="mailto:info@lyk-markop.att.sch.gr">info@lyk-markop.att.sch.gr</a></p>
+  </footer>
 
-            <p>
-                Τελευταία παράγραφος του άρθρου. Κλείνεις με ένα συμπέρασμα ή κάλεσμα για δράση.
-            </p>
-
-        </div>
-
-        <!-- Κουμπί επιστροφής -->
-        <a href="../index.html" class="back-btn">
-            ← Επιστροφή στην Αρχική
-        </a>
-
-    </article>
+  <!-- SCRIPT -->
+  <script>
+    function showTab(id) {
+      // Απόκρυψη όλων των tab-contents
+      document.querySelectorAll('.tab-content').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      // Απενεργοποίηση όλων των κουμπιών
+      document.querySelectorAll('.tab-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      // Εμφάνιση του επιλεγμένου
+      document.getElementById(id).classList.add('active');
+      // Ενεργοποίηση του κουμπιού
+      event.target.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
