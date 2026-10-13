@@ -1,627 +1,263 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Πρόγραμμα - 1ο ΓΕΛ Μαρκοπούλου</title>
-<style>
-  :root{
-    --gold:#cda85f;
-    --gold-dark:#b8934a;
-    --gold-darker:#8a6d3b;
-    --bg:#f7f3ec;
-    --card:#ffffff;
-    --border:#efe9df;
-    --text:#1e1e1e;
-    --muted:#6b6b6b;
-    --mon:#fdf6e8;
-    --tue:#eef4ea;
-    --highlight:#ffe680;
-    --highlight-border:#e0b400;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Άρθρο 1 - 1ο ΓΕΛ Μαρκοπούλου</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+        body {
+            background: linear-gradient(145deg, #f7f3ec 0%, #efe7db 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            padding: 30px 20px;
+            color: #1e1e1e;
+            display: flex;
+            justify-content: center;
+        }
 
-  body{
-    background:var(--bg);
-    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-    color:var(--text);
-    padding:14px 10px 40px;
-    -webkit-text-size-adjust:100%;
-  }
+        .article-container {
+            max-width: 780px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px -20px rgba(30, 58, 95, 0.25);
+            padding: 50px 45px;
+            position: relative;
+            overflow: hidden;
+        }
 
-  header{text-align:center;margin-bottom:14px;}
-  header .school{font-size:12px;font-weight:600;color:#8a7a5c;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
-  header h1{font-size:24px;font-weight:800;margin-bottom:3px;}
-  header .sub{font-size:13px;color:var(--muted);}
+        /* Διακοσμητική χρυσή λωρίδα στην κορυφή */
+        .article-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #cda85f 0%, #b8934a 50%, #e9cf94 100%);
+        }
 
-  .search-wrap{max-width:900px;margin:0 auto 12px;position:relative;}
-  .search-wrap input{
-    width:100%;padding:12px 40px 12px 42px;
-    font-size:15px;border:1px solid var(--border);border-radius:12px;
-    background:var(--card);box-shadow:0 2px 8px rgba(0,0,0,.05);
-    font-family:inherit;outline:none;
-    transition:border-color .15s, box-shadow .15s;
-  }
-  .search-wrap input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(205,168,95,.18);}
-  .search-wrap::before{
-    content:"🔍";position:absolute;left:14px;top:50%;
-    transform:translateY(-50%);font-size:15px;opacity:.55;pointer-events:none;
-  }
-  .search-wrap .clear{
-    position:absolute;right:8px;top:50%;transform:translateY(-50%);
-    width:28px;height:28px;border:none;border-radius:50%;
-    background:transparent;font-size:16px;color:#999;cursor:pointer;
-    display:none;align-items:center;justify-content:center;
-  }
-  .search-wrap.has-value .clear{display:flex;}
-  .search-wrap .clear:hover{background:#f0e8da;color:#555;}
+        /* Breadcrumb / πλοήγηση */
+        .breadcrumb {
+            font-size: 14px;
+            color: #8a7c68;
+            margin-bottom: 25px;
+            letter-spacing: 0.3px;
+        }
 
-  .tabs-row{
-    display:flex;gap:6px;max-width:900px;margin:0 auto 10px;
-    overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;
-    scrollbar-width:none;
-  }
-  .tabs-row::-webkit-scrollbar{display:none;}
-  .tabs-row button{
-    flex:0 0 auto;padding:9px 14px;
-    font-size:13px;font-weight:700;font-family:inherit;
-    border:1px solid var(--border);border-radius:10px;
-    background:var(--card);color:#5a4a2e;
-    cursor:pointer;transition:all .15s;white-space:nowrap;
-  }
-  .tabs-row button.active{
-    background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);
-    color:#1f1a12;border-color:var(--gold-darker);
-    box-shadow:0 3px 8px rgba(184,147,74,.35);
-  }
-  .tabs-row button:active{transform:scale(.97);}
+        .breadcrumb a {
+            color: #1e5ba6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
 
-  .tabs-row + .tabs-row{margin-top:-4px;}
+        .breadcrumb a:hover {
+            color: #b8934a;
+            text-decoration: underline;
+        }
 
-  /* ---------- ΠΙΝΑΚΑΣ ---------- */
-  .table-wrap{
-    display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    border-radius:14px;box-shadow:0 10px 24px rgba(0,0,0,.08);
-    background:var(--card);max-width:1200px;margin:0 auto;
-    scrollbar-width:thin;scrollbar-color:var(--gold) #f0e8da;
-  }
-  .table-wrap::-webkit-scrollbar{height:8px;}
-  .table-wrap::-webkit-scrollbar-track{background:#f0e8da;border-radius:20px;}
-  .table-wrap::-webkit-scrollbar-thumb{background:var(--gold);border-radius:20px;}
+        /* Τίτλος άρθρου */
+        h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e3a5f;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
 
-  table{border-collapse:collapse;width:100%;min-width:900px;}
-  th,td{padding:8px 6px;text-align:center;font-size:13px;border:1px solid var(--border);white-space:nowrap;}
-  thead th{
-    background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);
-    color:#1f1a12;font-weight:800;font-size:12px;text-transform:uppercase;
-    position:sticky;top:0;z-index:2;
-  }
-  thead th.corner{text-align:left;padding-left:14px;z-index:3;left:0;position:sticky;}
-  thead th.hour{font-size:12px;background:#d9b56b;}
+        /* Ημερομηνία & κατηγορία */
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+            color: #7a6a55;
+            margin-bottom: 30px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #e0d6c5;
+        }
 
-  tbody th.name{
-    background:#f3ede2;color:var(--text);font-weight:700;text-align:left;
-    padding-left:14px;position:sticky;left:0;z-index:1;
-    min-width:180px;max-width:200px;white-space:normal;word-break:break-word;
-    border-right:2px solid #e3d9cc;
-  }
-  tbody tr.hidden{display:none;}
-  tbody tr:hover td{filter:brightness(.96);}
-  tbody tr:hover th.name{background:#ede5d6;}
+        .meta .date {
+            background: #faf6ef;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #b8934a;
+            border: 1px solid #ecdfc9;
+        }
 
-  /* Χρώματα ημερών */
-  tbody td[data-day="0"]{background:var(--mon);}
-  tbody td[data-day="1"]{background:var(--tue);}
-  tbody td[data-day="2"]{background:var(--mon);}
-  tbody td[data-day="3"]{background:var(--tue);}
-  tbody td[data-day="4"]{background:var(--mon);}
+        .meta .category {
+            background: #eef4fc;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #1e5ba6;
+            border: 1px solid #d3e2f5;
+        }
 
-  td.cell{font-weight:700;color:#1f1a12;}
-  td.cell.p{background:#e8f0fa !important;color:#2c5d99;}
-  td.empty{color:transparent;}
-  td.empty::after{content:"·";color:#ddd6c8;font-size:12px;opacity:.6;}
+        /* Κύριο κείμενο άρθρου */
+        .article-content {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
 
-  /* ★ HIGHLIGHT */
-  tbody td.highlight,
-  tbody td.cell.highlight,
-  tbody td.cell.p.highlight{
-    background:var(--highlight) !important;
-    color:#1a1a1a !important;
-    font-weight:800 !important;
-    box-shadow:inset 0 0 0 2px var(--highlight-border);
-  }
+        .article-content p {
+            margin-bottom: 20px;
+        }
 
-  /* ★★★ ΑΠΟΚΡΥΨΗ ΗΜΕΡΩΝ ΜΕ data-day ★★★ */
-  body[data-day="0"] table th[data-day]:not([data-day="0"]),
-  body[data-day="0"] table td[data-day]:not([data-day="0"]){display:none;}
+        .article-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin: 35px 0 15px;
+            padding-left: 14px;
+            border-left: 5px solid #cda85f;
+        }
 
-  body[data-day="1"] table th[data-day]:not([data-day="1"]),
-  body[data-day="1"] table td[data-day]:not([data-day="1"]){display:none;}
+        .article-content ul,
+        .article-content ol {
+            margin: 15px 0 20px 25px;
+        }
 
-  body[data-day="2"] table th[data-day]:not([data-day="2"]),
-  body[data-day="2"] table td[data-day]:not([data-day="2"]){display:none;}
+        .article-content li {
+            margin-bottom: 8px;
+        }
 
-  body[data-day="3"] table th[data-day]:not([data-day="3"]),
-  body[data-day="3"] table td[data-day]:not([data-day="3"]){display:none;}
+        .article-content a {
+            color: #1e5ba6;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px dotted #1e5ba6;
+        }
 
-  body[data-day="4"] table th[data-day]:not([data-day="4"]),
-  body[data-day="4"] table td[data-day]:not([data-day="4"]){display:none;}
+        .article-content a:hover {
+            color: #b8934a;
+            border-bottom-color: #b8934a;
+        }
 
-  body[data-day="all"] table th[data-day],
-  body[data-day="all"] table td[data-day]{display:table-cell;}
+        /* Highlight box */
+        .article-content blockquote {
+            background: #fdfaf3;
+            border-left: 5px solid #cda85f;
+            padding: 18px 22px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: #5a4e3d;
+        }
 
-  /* Καθαρισμός έντονου border στην πρώτη ορατή στήλη */
-  body[data-day="0"] table td[data-day="0"]:first-of-type,
-  body[data-day="1"] table td[data-day="1"]:first-of-type,
-  body[data-day="2"] table td[data-day="2"]:first-of-type,
-  body[data-day="3"] table td[data-day="3"]:first-of-type,
-  body[data-day="4"] table td[data-day="4"]:first-of-type{
-    border-left:1px solid var(--border);
-  }
+        /* Κουμπί επιστροφής */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #6ba8e8 0%, #357abd 50%, #1e5ba6 100%);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(53, 122, 189, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
 
-  /* ---------- MOBILE CARDS ---------- */
-  .mobile-view{display:none;max-width:900px;margin:0 auto;}
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 32px rgba(53, 122, 189, 0.45);
+        }
 
-  .teacher-card{
-    background:var(--card);border-radius:14px;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
-    margin-bottom:12px;overflow:hidden;border:1px solid var(--border);
-  }
-  .teacher-card.hidden{display:none;}
-  .teacher-card .card-head{
-    background:linear-gradient(135deg,#f3ede2 0%,#ede5d6 100%);
-    padding:12px 14px;font-weight:800;font-size:15px;color:#3a2e1a;
-    border-bottom:2px solid #e3d9cc;
-    display:flex;align-items:center;gap:8px;
-  }
-  .teacher-card .card-head::before{content:"👤";font-size:14px;opacity:.6;}
+        .back-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 6px 14px rgba(53, 122, 189, 0.4);
+        }
 
-  .card-body{padding:10px 12px;}
-  .slot{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:9px 12px;border-radius:10px;margin-bottom:6px;
-    background:#fdf6e8;font-size:14px;
-    border-left:4px solid var(--gold);
-    transition:background .15s;
-  }
-  .slot .hour{font-weight:800;color:#8a6d3b;font-size:13px;min-width:52px;}
-  .slot .subject{font-weight:800;color:#1f1a12;font-size:15px;flex:1;text-align:center;}
-  .slot.empty-slot{
-    background:#fafaf7;color:#bbb;
-    border-left-color:#e5dfd3;font-style:italic;
-  }
-  .slot.empty-slot .subject{color:#bbb;font-weight:500;}
-  .slot.p{background:#e8f0fa;border-left-color:#2c5d99;}
-  .slot.p .subject{color:#2c5d99;}
+        /* Responsive */
+        @media (max-width: 600px) {
+            body { padding: 15px 12px; }
+            .article-container { padding: 35px 22px; border-radius: 18px; }
+            h1 { font-size: 26px; }
+            .article-content { font-size: 16px; }
+            .article-content h2 { font-size: 20px; }
+            .back-btn { width: 100%; justify-content: center; }
+        }
 
-  .slot.highlight{
-    background:var(--highlight) !important;
-    border-left-color:var(--highlight-border) !important;
-    box-shadow:0 0 0 2px var(--highlight-border);
-  }
-  .slot.highlight .subject,
-  .slot.highlight .hour{
-    color:#1a1a1a !important;
-  }
-
-  .day-header{
-    font-size:12px;font-weight:800;text-transform:uppercase;
-    color:#8a6d3b;letter-spacing:1px;
-    padding:8px 4px 4px;
-    border-bottom:1px dashed #e3d9cc;
-    margin-bottom:6px;margin-top:6px;
-  }
-  .day-header:first-child{margin-top:0;}
-
-  .no-results{
-    text-align:center;padding:40px 20px;color:#999;font-size:15px;
-    background:var(--card);border-radius:14px;border:1px dashed var(--border);
-  }
-  .no-results.hidden{display:none;}
-
-  .active-legend{
-    display:none;
-    max-width:900px;margin:0 auto 12px;
-    text-align:center;font-size:13px;color:#5a4a2e;
-    background:#fff8dc;border:1px solid var(--highlight-border);
-    border-radius:10px;padding:8px 12px;
-    line-height:1.5;
-  }
-  .active-legend.show{display:block;}
-  .active-legend strong{color:#1a1a1a;}
-  .active-legend button{
-    margin-left:10px;
-    background:transparent;border:1px solid #d4b44a;
-    color:#5a4a2e;border-radius:20px;padding:2px 10px;
-    font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;
-  }
-  .active-legend button:hover{background:#f6e9a8;}
-
-  @media (max-width:820px){
-    .table-wrap{display:none;}
-    .mobile-view{display:block;}
-    .search-wrap input{padding:11px 38px 11px 40px;font-size:16px;}
-  }
-  @media (max-width:480px){
-    body{padding:10px 8px 30px;}
-    header h1{font-size:20px;}
-    header .school{font-size:10px;}
-    header .sub{font-size:12px;}
-    .teacher-card .card-head{font-size:14px;padding:10px 12px;}
-    .slot{padding:8px 10px;font-size:13px;flex-wrap:wrap;}
-    .slot .subject{font-size:14px;}
-    .tabs-row button{padding:8px 12px;font-size:12px;}
-  }
-</style>
+        @media (max-width: 360px) {
+            h1 { font-size: 22px; }
+            .article-content { font-size: 15px; }
+        }
+    </style>
 </head>
-<body data-day="all">
+<body>
 
-<header>
-  <div class="school">1ο ΓΕΛ ΜΑΡΚΟΠΟΥΛΟΥ</div>
-  <h1>Πρόγραμμα</h1>
-  <div class="sub">Από 14 Οκτωβρίου 2026</div>
-</header>
+    <article class="article-container">
 
-<div class="search-wrap" id="searchWrap">
-  <input type="search" id="searchInput" placeholder="Αναζήτηση καθηγητή..." autocomplete="off">
-  <button class="clear" id="clearBtn" aria-label="Καθαρισμός">✕</button>
-</div>
+        <!-- Πλοήγηση -->
+        <div class="breadcrumb">
+            <a href="../index.html">🏠 Αρχική</a> &nbsp;›&nbsp; <span>Άρθρα</span> &nbsp;›&nbsp; <span>Άρθρο 1</span>
+        </div>
 
-<div class="tabs-row" id="dayTabs">
-  <button data-day="all" class="active">Όλες</button>
-  <button data-day="0">Δευτέρα</button>
-  <button data-day="1">Τρίτη</button>
-  <button data-day="2">Τετάρτη</button>
-  <button data-day="3">Πέμπτη</button>
-  <button data-day="4">Παρασκευή</button>
-</div>
+        <!-- Τίτλος -->
+        <h1>Τίτλος του Άρθρου 1</h1>
 
-<div class="tabs-row" id="sectionTabs"></div>
+        <!-- Meta πληροφορίες -->
+        <div class="meta">
+            <span class="date">📅 14 Οκτωβρίου 2026</span>
+            <span class="category">📌 Ανακοινώσεις</span>
+        </div>
 
-<div class="active-legend" id="activeLegend">
-  Επιλεγμένο: <strong id="activeLabel">—</strong>
-  <button id="clearHighlight">Καθαρισμός</button>
-</div>
+        <!-- Κύριο κείμενο -->
+        <div class="article-content">
 
-<div class="table-wrap" id="desktopView">
-  <table>
-    <thead id="tableHead"></thead>
-    <tbody id="tableBody"></tbody>
-  </table>
-</div>
+            <p>
+                Εδώ γράφεις την <strong>εισαγωγική παράγραφο</strong> του άρθρου. 
+                Μπορείς να χρησιμοποιείς έντονα γράμματα, πλάγια, ή όποια άλλη μορφοποίηση θέλεις.
+            </p>
 
-<div class="mobile-view" id="mobileView"></div>
-<div class="no-results hidden" id="noResults">Δεν βρέθηκε αποτέλεσμα.</div>
+            <p>
+                Δεύτερη παράγραφος με περισσότερες λεπτομέρειες. 
+                Αν έχεις σύνδεσμο, μπορείς να τον βάλεις <a href="#">έτσι</a>.
+            </p>
 
-<script>
-/* ============================================================
-   ΔΕΔΟΜΕΝΑ (με διορθώσεις)
-============================================================ */
-const DAYS = ["Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή"];
+            <h2>Υπότιτλος ενότητας</h2>
 
-const data = [
-  ["Μαργιόρα Φιλίππα", [["","","","","","",""],["","","","","","",""],["ΒΘ3","","","","","",""],["ΒΘ3","ΒΘ3","","","","",""],["","","","","","",""]]],
-  ["Τσοτσορού Μαρία", [["","","","Β1","Α3","Β3","Γ4"],["Γ3","Γ1","Α4","","","Α2",""],["","","","Β4","Α3","Β2",""],["Γ2","Γ5","","Α1","","",""],["Α1","","","Β4","Α4","Α2",""]]],
-  ["Γλύπτη Μαρία", [["ΓΑ2","ΓΑ2","","Β4","","",""],["","","Β4","Β4","Β3","Β3",""],["","","","Β2","ΓΑ2","ΓΑ2",""],["","","Β3","Β4","ΓΑ2","ΓΑ2",""],["Β4","Β4","Β4","","Β2","",""]]],
-  ["Καστανά Αναστασία", [["Β1","Β1","Α1","Α1","","",""],["Γ4","Γ4","ΓΑ1","ΓΑ1","","Α1",""],["","Γ4","","Α1","ΓΑ1","ΓΑ1",""],["Γ4","Γ4","Α1","Β1","","",""],["ΓΑ1","ΓΑ1","Β1","","Γ4","",""]]],
-  ["Κόλλια Ιωάννα", [["ΓΑ1","ΓΑ1","Α2","","Γ1","Γ1",""],["Γ1","ΒΑ1","","","ΓΑ1","ΓΑ1",""],["ΒΑ1","Α2","Α2","","","",""],["Γ1","Γ1","","","ΓΑ1","ΓΑ1",""],["Α2","","","","Γ1","",""]]],
-  ["Καγιάννη Υπαπαντή", [["","","","Α3","Α4","Γ5","Γ5"],["Γ5","","","Α4","Α4","Α3",""],["Γ5","","Α3","","Β3","Α4",""],["","","Α4","Α3","Β3","Β3",""],["","Α3","","Β3","Γ5","Γ5",""]]],
-  ["Σιδερά Παρασκευή", [["Α4","","ΓΑ2","ΓΑ2","Γ3","",""],["ΒΑ2","ΒΑ2","","","ΓΑ2","ΓΑ2",""],["Γ3","Γ3","Α1","","","",""],["Γ3","Γ3","ΓΑ2","ΓΑ2","","",""],["","","","Α1","","Α4","Γ3"]]],
-  ["Τσάτσου Ευαγγελία", [["","","Β1","Β2","Γ2","Γ2",""],["Α3","Γ2","ΓΑ2","ΓΑ2","","",""],["","Γ2","ΓΑ2","ΓΑ2","","",""],["Α3","","Β1","Β2","","",""],["ΓΑ2","ΓΑ2","","","Γ2","Γ2",""]]],
-  ["Τσόμπου Αθανασία", [["","","ΓΑ1","ΓΑ1","Α2","Α2",""],["ΒΑ1","Α2","Α2","","","",""],["","","ΓΑ1","ΓΑ1","Β2","",""],["ΒΑ1","ΒΑ1","ΓΑ1","ΓΑ1","","",""],["Β2","Β2","Α2","Β2","","",""]]],
-  ["Φόνσου Βικτωρία", [["Α3","Α4","Β2","Β3","","",""],["Α4","","Β1","Α3","Α3","",""],["ΒΑ2","Β2","","Α4","Α4","",""],["ΒΑ2","ΒΑ2","Α3","","","Β1",""],["ΓΘ","ΓΘ","ΓΟ1","ΓΟ1","","Β3",""]]],
-  ["Μαραγκός Νικόλαος", [["ΓΟ2","ΓΟ2","Β4","Α4","","",""],["ΒΘ2","Α4","Γ02","Γ02","","",""],["ΒΘ2","Β4","Α4","","Β4","",""],["Α4","ΒΘ2","ΓΟ2","ΓΟ2","Α4","",""],["","","ΓΑ2","ΓΑ2","","Β4","Β4"]]],
+            <p>
+                Κείμενο κάτω από τον υπότιτλο. Μπορείς να χρησιμοποιήσεις λίστες:
+            </p>
 
-  // ★ ΔΙΟΡΘΩΜΕΝΗ: Ντούρα Άννα - Δευτέρα 1η Α2, 2η Α3 · Τετάρτη 6η Α2, 7η Α2
-  ["Ντούρα Άννα", [["Α2","Α3","","","","",""],["","","","","","",""],["","","","","","Α2","Α2"],["","","","","","",""],["","","","","","",""]]],
+            <ul>
+                <li>Πρώτο σημείο</li>
+                <li>Δεύτερο σημείο</li>
+                <li>Τρίτο σημείο</li>
+            </ul>
 
-  ["Σουλιώτη Βασιλική", [["Β2","Β2","Α3","","Β1","",""],["","ΒΘ1","ΓΟ1","ΓΟ1","Β2","Β2",""],["ΒΘ1","","Γ01","ΓΟ1","","Β1",""],["ΒΘ1","Α3","ΓΟ1","ΓΟ1","Β1","",""],["Β1","Β1","","Α3","","","Β2"]]],
-  ["Χατζηβλάστου Κωνσταντίνος", [["ΓΘ","Α1","","ΓΘ","Β3","",""],["Α1","","","","ΓΘ","ΓΘ",""],["","","","Β3","Α1","Β3","Α1"],["","","","","ΓΘ","ΓΘ","Β3"],["","Α1","ΓΑ1","ΓΑ1","Β3","",""]]],
-  ["Ζεϊμπέκη Ευθαλία", [["Α1","Α2","","","","",""],["ΒΘ3","ΒΘ3","ΓΥ","ΓΥ","","",""],["","Α4","ΓΥ","ΓΥ","","",""],["Α1","Α2","","","","",""],["ΓΥ","ΓΥ","Α4","","","",""]]],
-  ["Στουραΐτης Αθανάσιος", [["Β4","ΓΘ","ΓΘ","","","",""],["ΒΘ1","ΒΘ2","Β3","Β1","","",""],["","","","ΓΘ","ΓΘ","Β2"],["ΒΘ2","ΒΘ1","ΓΘ","ΓΘ","","Β4",""],["","","","","Β1","","Β2","Β3"]]],
-  ["Βασιλάκη Φωτεινή", [["","Β3","ΓΥ","ΓΥ","Β4","","Β2"],["","Α3","ΓΘ","ΓΘ","","Β4","Β3"],["","","ΓΘ","ΓΘ","ΓΥ","ΓΥ",""],["","","ΓΥ","ΓΥ","","Α4","Β2"],["Α3","Α4","ΓΘ","ΓΘ","","",""]]],
+            <blockquote>
+                💡 Εδώ μπορείς να βάλεις ένα σημαντικό απόσπασμα ή μήνυμα που θέλεις να ξεχωρίζει.
+            </blockquote>
 
-  // ★ ΔΙΟΡΘΩΜΕΝΗ: Ονουφρίου - Τρίτη 6η Β1, 7η Α2 · Τετάρτη 1η Α2, 2η Β1
-  ["Ονουφρίου Νικόλαος - Νεκτ.", [["","","","","","",""],["","","","","","Β1","Α2"],["Α2","Β1","","","","",""],["","","","","","",""],["","","","","","",""]]],
+            <p>
+                Τελευταία παράγραφος του άρθρου. Κλείνεις με ένα συμπέρασμα ή κάλεσμα για δράση.
+            </p>
 
-  // ★ ΔΙΟΡΘΩΜΕΝΗ: Σαλαγιάννη - Πέμπτη 2η Α1, 3η Α2, 5η Α3, 6η Α1
-  ["Σαλαγιάννη Χρυσ.- Αγγελική", [["","","","","","",""],["","","","","","",""],["","","","","","",""],["","Α1","Α2","","Α3","Α1",""],["","","","","","",""]]],
+        </div>
 
-  ["Σούρα Κυριακή", [["ΓΥ","ΓΥ","Β3","","Β2","",""],["","","","Β2","Β1","","Β4"],["","","Α3","Β1","Β4","",""],["","","","Α4","ΓΥ","ΓΥ",""],["Α4","Β3","ΓΥ","ΓΥ","Α3","",""]]],
-  ["Μαστοράκη Βασιλική", [["","","","","","",""],["","","","","","",""],["Α4","Α1","Β1","","Α2","Α3",""],["Α2","Α4","","","Β2","Α3","Α1"],["","","","","","",""]]],
-  ["Μπακαλή Μαρία", [["","","","","Γ5","Γ4","Γ3"],["Α2","Γ5","Β2","","Α1","",""],["","","Β3","Α2","","Α1",""],["","","Α2","Β4","Β2","",""],["Β3","","Α1","","Β4","Γ3","Γ4"]]],
-  ["Νικολάου Κωνσταντίνα", [["","","","","","",""],["","","","","","",""],["Α4","Β3","","","","",""],["","","Α4","Β4","","",""],["","","","","","",""]]],
-  ["Γαβριήλ Ειρήνη", [["","","Α4","Α2","","Β2","Γ1"],["","","","","","",""],["Α3","Γ1","Β2","Β1","","",""],["","","","","","",""],["","Α2","Α3","Α4","Β1","Γ1",""]]],
-  ["Κόλλια Αλεξάνδρα", [["","","","","Γ4","Γ3","Γ2"],["Γ2","Γ3","Α1","","Β4","",""],["Γ4","Γ5","Β4","","","",""],["Γ5","Γ2","","Β3","Α1","",""],["","","Β3","","Γ3","Γ4","Γ5"]]],
-  ["Σωτηρίου Αικατερίνα", [["ΓΟ1","ΓΟ1","ΓΟ2","ΓΟ2","Α1","",""],["","","","Α2","ΓΟ1","ΓΟ1",""],["Α1","Α3","","","ΓΟ2","ΓΟ2",""],["","","","","Α2","","Α3"],["ΓΟ1","ΓΟ1","ΓΟ2","ΓΟ2","","",""]]],
-  ["Τσούτσουρα Αλεξάνδρα", [["Β3","Β4","ΓΟ1","ΓΟ1","","",""],["","","","Β3","ΓΟ2","ΓΟ2",""],["","","ΓΟ2","ΓΟ2","ΓΟ1","ΓΟ1",""],["","","Β2","","ΓΟ1","ΓΟ1","Β4"],["ΓΟ2","ΓΟ2","Β2","","","",""]]],
-  ["Κωνσταντοπούλου Μ-Γ ΕΑΕ", [["","p","","p","p","p","p"],["p","p","","p","p","",""],["p","p","p","p","","",""],["p","","p","","p","p","p"],["p","p","p","","p","","p"]]],
-  ["Μουρίκη Δήμητρα ΕΑΕ", [["p","p","p","","p","p",""],["","p","p","","p","p",""],["","","","p","","p","p"],["","","","","","",""],["p","p","","p","p","p"]]],
-  ["Δαϊκοπούλου Ευαγγελία ΕΑΕ", [["p","p","p","p","p","",""],["p","","p","p","","p",""],["p","p","p","","p","p",""],["","p","p","p","p","","p"],["p","p","","p","",""]]],
-  ["Μπιτσάκου Αθανασία ΕΑΕ", [["p","","p","p","","p",""],["p","p","p","","p","p",""],["","","","","","",""],["","","","","","",""],["p","p","","p","","p",""]]],
-];
+        <!-- Κουμπί επιστροφής -->
+        <a href="../index.html" class="back-btn">
+            ← Επιστροφή στην Αρχική
+        </a>
 
-/* ============================================================
-   ΟΜΑΔΟΠΟΙΗΣΗ ΑΝΑ ΤΑΞΗ
-============================================================ */
-const CLASS_B_DIR = ["ΒΘ1","ΒΘ2","ΒΘ3","ΒΘΕΤ","ΒΑ1","ΒΑ2","ΒΑΝΘΡ"];
-const CLASS_G = ["Γ1","Γ2","Γ3","Γ4","Γ5"];
-const CLASS_G_DIR = ["ΓΘ","ΓΘΕΤ","ΓΥ","ΓΟ1","ΓΟ2","ΓΑ1","ΓΑ2","ΓΑΝΘΡ"];
-const ALL_G = [...CLASS_G, ...CLASS_G_DIR];
+    </article>
 
-const GROUPS = {
-  "Α1": ["Α1"], "Α2": ["Α2"], "Α3": ["Α3"], "Α4": ["Α4"],
-  "Β1": ["Β1"], "Β2": ["Β2"], "Β3": ["Β3"],
-  "Β4": ["Β4", ...CLASS_B_DIR],
-  "Γ1": ALL_G, "Γ2": ALL_G, "Γ3": ALL_G, "Γ4": ALL_G, "Γ5": ALL_G,
-  "ΓΘ": ALL_G, "ΓΥ": ALL_G, "ΓΟ1": ALL_G, "ΓΟ2": ALL_G,
-  "ΓΑ1": ALL_G, "ΓΑ2": ALL_G
-};
-
-const SECTION_KEYS = Object.keys(GROUPS);
-
-/* ============================================================
-   ΚΑΤΑΣΤΑΣΗ
-============================================================ */
-let currentDay = 'all';
-let activeSection = null;
-
-/* ============================================================
-   DESKTOP ΠΙΝΑΚΑΣ
-============================================================ */
-function buildDesktopTable(){
-  const thead = document.getElementById('tableHead');
-  const tbody = document.getElementById('tableBody');
-
-  let headRow1 = `<th rowspan="2" class="corner">ΔΙΔΑΣΚΟΝΤΕΣ</th>`;
-  for (let d=0; d<5; d++){
-    headRow1 += `<th colspan="7" class="day" data-day="${d}">${DAYS[d].toUpperCase()}</th>`;
-  }
-
-  let headRow2 = '';
-  for (let d=0; d<5; d++){
-    for (let h=1; h<=7; h++){
-      headRow2 += `<th class="hour" data-day="${d}">${h}</th>`;
-    }
-  }
-
-  thead.innerHTML = `
-    <tr>${headRow1}</tr>
-    <tr>${headRow2}</tr>`;
-
-  tbody.innerHTML = '';
-  data.forEach(([name, days]) => {
-    const tr = document.createElement('tr');
-    tr.dataset.name = name.toLowerCase();
-    let html = `<th class="name">${name}</th>`;
-    days.forEach((dayArr, d) => {
-      dayArr.forEach(v => {
-        if (v === '') {
-          html += `<td class="empty" data-day="${d}" data-value=""></td>`;
-        } else if (v === 'p') {
-          html += `<td class="cell p" data-day="${d}" data-value="p">Π</td>`;
-        } else {
-          html += `<td class="cell" data-day="${d}" data-value="${v}">${v}</td>`;
-        }
-      });
-    });
-    tr.innerHTML = html;
-    tbody.appendChild(tr);
-  });
-}
-
-/* ============================================================
-   MOBILE CARDS
-============================================================ */
-function buildMobileCards(){
-  const wrap = document.getElementById('mobileView');
-  wrap.innerHTML = '';
-
-  if (currentDay === 'all'){
-    data.forEach(([name, days]) => {
-      const card = document.createElement('div');
-      card.className = 'teacher-card';
-      card.dataset.name = name.toLowerCase();
-
-      let body = '';
-      for (let d=0; d<5; d++){
-        body += `<div class="day-header">${DAYS[d]}</div>`;
-        days[d].forEach((v, i) => {
-          const hour = i + 1;
-          if (v === '') {
-            body += `<div class="slot empty-slot" data-value="" data-day="${d}"><span class="hour">${hour}η</span><span class="subject">—</span></div>`;
-          } else if (v === 'p') {
-            body += `<div class="slot p" data-value="p" data-day="${d}"><span class="hour">${hour}η</span><span class="subject">Π (ΕΑΕ)</span></div>`;
-          } else {
-            body += `<div class="slot" data-value="${v}" data-day="${d}"><span class="hour">${hour}η</span><span class="subject">${v}</span></div>`;
-          }
-        });
-      }
-
-      card.innerHTML = `
-        <div class="card-head">${name}</div>
-        <div class="card-body">${body}</div>
-      `;
-      wrap.appendChild(card);
-    });
-  } else {
-    data.forEach(([name, days]) => {
-      const card = document.createElement('div');
-      card.className = 'teacher-card';
-      card.dataset.name = name.toLowerCase();
-
-      let body = '';
-      days[currentDay].forEach((v, i) => {
-        const hour = i + 1;
-        if (v === '') {
-          body += `<div class="slot empty-slot" data-value=""><span class="hour">${hour}η</span><span class="subject">—</span></div>`;
-        } else if (v === 'p') {
-          body += `<div class="slot p" data-value="p"><span class="hour">${hour}η</span><span class="subject">Π (ΕΑΕ)</span></div>`;
-        } else {
-          body += `<div class="slot" data-value="${v}"><span class="hour">${hour}η</span><span class="subject">${v}</span></div>`;
-        }
-      });
-
-      card.innerHTML = `
-        <div class="card-head">${name}</div>
-        <div class="card-body">${body}</div>
-      `;
-      wrap.appendChild(card);
-    });
-  }
-}
-
-/* ============================================================
-   HIGHLIGHT
-============================================================ */
-function applyHighlight(){
-  document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
-
-  if (!activeSection){
-    document.getElementById('activeLegend').classList.remove('show');
-    return;
-  }
-
-  const targets = GROUPS[activeSection] || [activeSection];
-  const targetsUpper = targets.map(t => t.toUpperCase());
-
-  document.querySelectorAll('#tableBody td[data-value]').forEach(td => {
-    const v = (td.dataset.value || '').toUpperCase();
-    if (v && targetsUpper.includes(v)) td.classList.add('highlight');
-  });
-
-  document.querySelectorAll('#mobileView .slot[data-value]').forEach(slot => {
-    const v = (slot.dataset.value || '').toUpperCase();
-    if (v && targetsUpper.includes(v)) slot.classList.add('highlight');
-  });
-
-  const legend = document.getElementById('activeLegend');
-  legend.classList.add('show');
-
-  const firstChar = activeSection[0];
-  let labelText;
-  if (activeSection === 'Β4'){
-    labelText = `Β4 + κατευθύνσεις Β' (${CLASS_B_DIR.join(', ')})`;
-  } else if (firstChar === 'Γ'){
-    labelText = `όλη η Γ' τάξη (${ALL_G.join(', ')})`;
-  } else {
-    labelText = activeSection;
-  }
-  document.getElementById('activeLabel').textContent = labelText;
-}
-
-/* ============================================================
-   TABS ΤΜΗΜΑΤΩΝ
-============================================================ */
-function buildSectionTabs(){
-  const wrap = document.getElementById('sectionTabs');
-  wrap.innerHTML = '';
-  SECTION_KEYS.forEach(s => {
-    const b = document.createElement('button');
-    b.textContent = s;
-    b.dataset.section = s;
-    b.addEventListener('click', () => {
-      if (activeSection === s){
-        activeSection = null;
-        document.querySelectorAll('#sectionTabs button').forEach(x => x.classList.remove('active'));
-      } else {
-        activeSection = s;
-        document.querySelectorAll('#sectionTabs button').forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
-      }
-      applyHighlight();
-    });
-    wrap.appendChild(b);
-  });
-}
-
-/* ============================================================
-   ΑΝΑΖΗΤΗΣΗ
-============================================================ */
-const searchInput = document.getElementById('searchInput');
-const searchWrap = document.getElementById('searchWrap');
-const clearBtn = document.getElementById('clearBtn');
-const noResults = document.getElementById('noResults');
-
-function applySearch(){
-  const q = searchInput.value.trim().toLowerCase();
-  searchWrap.classList.toggle('has-value', q.length > 0);
-
-  let visibleDesktop = 0;
-  document.querySelectorAll('#tableBody tr').forEach(tr => {
-    const match = tr.dataset.name.includes(q);
-    tr.classList.toggle('hidden', !match);
-    if (match) visibleDesktop++;
-  });
-
-  let visibleMobile = 0;
-  document.querySelectorAll('.teacher-card').forEach(card => {
-    const match = card.dataset.name.includes(q);
-    card.classList.toggle('hidden', !match);
-    if (match) visibleMobile++;
-  });
-
-  const isMobile = window.matchMedia('(max-width:820px)').matches;
-  const visible = isMobile ? visibleMobile : visibleDesktop;
-  noResults.classList.toggle('hidden', visible > 0);
-}
-
-searchInput.addEventListener('input', applySearch);
-clearBtn.addEventListener('click', () => {
-  searchInput.value = '';
-  applySearch();
-  searchInput.focus();
-});
-
-/* ============================================================
-   TABS ΗΜΕΡΩΝ
-============================================================ */
-document.querySelectorAll('#dayTabs button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('#dayTabs button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const val = btn.dataset.day;
-    currentDay = (val === 'all') ? 'all' : parseInt(val, 10);
-    document.body.dataset.day = (val === 'all') ? 'all' : val;
-
-    buildMobileCards();
-    applyHighlight();
-    applySearch();
-  });
-});
-
-/* ============================================================
-   ΚΑΘΑΡΙΣΜΟΣ
-============================================================ */
-document.getElementById('clearHighlight').addEventListener('click', () => {
-  activeSection = null;
-  document.querySelectorAll('#sectionTabs button').forEach(x => x.classList.remove('active'));
-  applyHighlight();
-});
-
-/* ============================================================
-   INIT
-============================================================ */
-function init(){
-  buildSectionTabs();
-  buildDesktopTable();
-  buildMobileCards();
-  applyHighlight();
-  applySearch();
-}
-
-let lastIsMobile = window.matchMedia('(max-width:820px)').matches;
-window.addEventListener('resize', () => {
-  const isMobile = window.matchMedia('(max-width:820px)').matches;
-  if (isMobile !== lastIsMobile){
-    lastIsMobile = isMobile;
-    applySearch();
-  }
-});
-
-init();
-</script>
 </body>
 </html>
