@@ -1,27 +1,381 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ΑΙΤΗΣΕΙΣ ΠΛΗΓΕΝΤΩΝ ΥΠΟΨΗΦΙΩΝ ΠΑΝΕΛΛΑΔΙΚΩΝ - 10ο Λύκειο Μαρκοπούλου</title>
-<style>
-  body { font-family:'Segoe UI',sans-serif; background:#f4f6fb; color:#2c3e50; margin:0; line-height:1.7; }
-  header { background:linear-gradient(135deg,#1e3c72,#2a5298); color:#fff; padding:25px; text-align:center; }
-  .container { max-width:800px; margin:30px auto; padding:30px; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); }
-  h1 { color:#1e3c72; }
-  .date { color:#f39c12; font-weight:bold; margin-bottom:20px; }
-  a.back { display:inline-block; margin-bottom:20px; color:#2a5298; text-decoration:none; font-weight:bold; }
-  a.back:hover { color:#f39c12; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ειδικό ποσοστό πληγέντων 2026 – Σύνοψη</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f5f9;
+            color: #1e2b3c;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.55;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.25);
+            padding: 2.5rem 2.5rem 2rem;
+            transition: box-shadow 0.3s;
+        }
+
+        /* decorative header */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #d0ddee;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .title-section h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0b2b4a;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .title-section h1 span {
+            background: #eef4ff;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1f4e8c;
+            letter-spacing: 0.3px;
+            margin-left: 0.8rem;
+        }
+
+        .subhead {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #3f5a78;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.8rem;
+        }
+
+        .subhead .badge {
+            background: #e8edf5;
+            padding: 0.2rem 0.9rem;
+            border-radius: 24px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1f4e8c;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .protocol {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #4b5f77;
+            background: #f6faff;
+            padding: 0.8rem 1.4rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            border: 1px solid #d7e2f0;
+            white-space: nowrap;
+        }
+
+        .protocol strong {
+            color: #0b2b4a;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        /* card grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 1.8rem 0 1.2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            padding: 1.6rem 1.8rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2ecf9;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: #b8cee8;
+            box-shadow: 0 12px 24px -12px rgba(20, 60, 120, 0.2);
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 650;
+            color: #0b2b4a;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid #dfeaff;
+        }
+
+        .card h2 i {
+            font-style: normal;
+            font-size: 1.5rem;
+        }
+
+        .card ul, .card ol {
+            padding-left: 1.4rem;
+            color: #1f344a;
+            font-size: 0.96rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .card li strong {
+            color: #0b2b4a;
+        }
+
+        .highlight {
+            background: #f0f7ff;
+            padding: 0.7rem 1.1rem;
+            border-radius: 1rem;
+            font-size: 0.94rem;
+            border-left: 5px solid #1e5ba6;
+            margin: 1rem 0 0.4rem;
+        }
+
+        .date-badge {
+            background: #d9e8ff;
+            color: #08315e;
+            font-weight: 600;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-right: 0.4rem;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.8rem;
+            margin-top: 0.6rem;
+        }
+
+        .pill {
+            background: #f0f5fe;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1d4c81;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2.5rem;
+            padding-top: 1.8rem;
+            border-top: 2px solid #cfdef0;
+            gap: 1.2rem;
+        }
+
+        .file-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+        }
+
+        .file-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #eef3fa;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1e4b7c;
+            text-decoration: none;
+            transition: all 0.15s;
+            border: 1px solid #d3e2f5;
+            word-break: break-word;
+        }
+
+        .file-link:hover {
+            background: #1e4b7c;
+            color: white;
+            border-color: #1e4b7c;
+        }
+
+        .file-link .icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .signature {
+            font-size: 0.9rem;
+            color: #4f6884;
+            text-align: right;
+            font-style: italic;
+        }
+
+        .signature strong {
+            font-style: normal;
+            color: #0b2b4a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 800px) {
+            body { padding: 1rem; }
+            .container { padding: 1.5rem; }
+            .grid { grid-template-columns: 1fr; }
+            .header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .protocol { text-align: left; white-space: normal; width: 100%; }
+            .footer-links { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
 </head>
 <body>
-  <header><h1>🏫 10ο Λύκειο Μαρκοπούλου</h1></header>
-  <div class="container">
-    <a href="../index.html" class="back">← Πίσω στην αρχική</a>
-    <h1>ΑΙΤΗΣΕΙΣ ΠΛΗΓΕΝΤΩΝ ΥΠΟΨΗΦΙΩΝ ΠΑΝΕΛΛΑΔΙΚΩΝ</h1>
-    <div class="date">13/10/2026</div>
-    <p>Ενημέρωση για τις αιτήσεις των πληγέντων υποψηφίων των Πανελλαδικών εξετάσεων.</p>
-    <p>Για περισσότερες πληροφορίες, επικοινωνήστε με τη γραμματεία του σχολείου.</p>
-  </div>
+    <div class="container">
+        <!-- header -->
+        <div class="header">
+            <div class="title-section">
+                <h1>
+                    🎓 Ειδικό ποσοστό πληγέντων
+                    <span>2026</span>
+                </h1>
+                <div class="subhead">
+                    <div class="badge">Φυσικές καταστροφές</div>
+                    <div class="badge">Εισαγωγή ΑΕΙ / ΑΕΑ</div>
+                    <div>Ακαδ. έτος 2026–2027</div>
+                </div>
+            </div>
+            <div class="protocol">
+                <strong>Φ.152 / 136504 / Α5</strong>
+                13 Οκτωβρίου 2026
+            </div>
+        </div>
+
+        <!-- main grid: two columns -->
+        <div class="grid">
+            <!-- left column: policy essentials -->
+            <div class="card">
+                <h2><i>📋</i> Βασικές ρυθμίσεις</h2>
+                <ul>
+                    <li><strong>Ποσοστό 2%</strong> καθ' υπέρβαση του αριθμού εισακτέων, ανά κατηγορία Λυκείου (ημερήσια/εσπερινά ΓΕΛ & ΕΠΑΛ).</li>
+                    <li>Αφορά <strong>μαθητές τελευταίας τάξης</strong> (2025-2026) και <strong>αποφοίτους</strong> που συμμετείχαν στις πανελλαδικές εξετάσεις Ιουνίου 2026.</li>
+                    <li>Ισχύει για όσους υπέβαλαν αίτηση-δήλωση σε Λύκειο πληγείσας περιοχής <em>ή</em> κατοικούν μόνιμα σε αυτήν ακόμη και αν φοίτησαν αλλού.</li>
+                    <li><strong>Εξαιρούνται</strong> όσοι συμμετείχαν σε επαναληπτικές εξετάσεις 2026.</li>
+                    <li>Η επιλογή γίνεται με το μοναδικό μηχανογραφικό δελτίο Ιουλίου 2026.</li>
+                </ul>
+                <div class="highlight">
+                    ⏳ <strong>Προθεσμία υποβολής δικαιολογητικών:</strong> έως <strong>19 Οκτωβρίου 2026</strong> στις Διευθύνσεις Δευτεροβάθμιας Εκπαίδευσης (ΔΔΕ) πληγεισών περιοχών.
+                </div>
+            </div>
+
+            <!-- right column: δικαιολογητικά & διαδικασία -->
+            <div class="card">
+                <h2><i>📄</i> Δικαιολογητικά & ροή</h2>
+                <p style="font-weight:600; margin-bottom:0.3rem; color:#0b2b4a;">Α. Για μαθητές/αποφοίτους σχολείων πληγείσας περιοχής</p>
+                <ul style="margin-bottom:1rem;">
+                    <li>Αίτηση – Υπεύθυνη δήλωση (κωδικός υποψηφίου 2026).</li>
+                    <li>Βεβαίωση Διευθυντή σχολικής μονάδας υποβολής Αίτησης-Δήλωσης.</li>
+                </ul>
+                <p style="font-weight:600; margin-bottom:0.3rem; color:#0b2b4a;">Β. Για όσους κατοικούν μόνιμα σε πληγείσα περιοχή αλλά φοίτησαν αλλού</p>
+                <ul>
+                    <li>Αίτηση – Υπεύθυνη δήλωση.</li>
+                    <li>Ε1 οικονομικού έτους 2026 (χρήση 2025) ή βεβαίωση μόνιμης κατοικίας από my school.</li>
+                    <li>Βεβαίωση Διευθυντή σχολείου υποβολής Αίτησης-Δήλωσης.</li>
+                </ul>
+                <div style="margin-top:1rem; background:#eef4fc; border-radius:1.2rem; padding:0.9rem 1.2rem;">
+                    <span class="date-badge">📅 22 Οκτωβρίου 2026</span> 
+                    <span style="font-size:0.92rem;">Αποστολή πινάκων δικαιούχων (4 ξεχωριστά φύλλα excel ανά κατηγορία Λυκείου) στο <strong>dode@minedu.gov.gr</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- third row: regions (span both columns) -->
+        <div class="card" style="margin-top:0.6rem; grid-column:1/-1;">
+            <h2><i>🗺️</i> Πληγείσες περιοχές (ενδεικτικά)</h2>
+            <div style="display:flex; flex-wrap:wrap; gap:1.5rem;">
+                <div style="flex:2; min-width:260px;">
+                    <div class="pill-list">
+                        <span class="pill">Αττική: Μαραθώνας, Σαρωνικός, Ραφήνα, Ωρωπός, Μαρκόπουλο, Βάρη-Βούλα-Βουλιαγμένη, Κερατέα, Άγιος Στέφανος, Κρυονέρι, Μάνδρα, Γλυφάδα, Κύθηρα, Μέγαρα</span>
+                        <span class="pill">Βόρειο Αιγαίο: Χίος</span>
+                        <span class="pill">Δυτική Ελλάδα: Ακτίο-Βόνιτσα, Θέρμο, Πάτρα, Ήλιδα, Αρχαία Ολυμπία</span>
+                        <span class="pill">Ήπειρος: Ιωάννινα, Βόρεια Τζουμέρκα, Ζίτσα, Άρτα, Ζηρός, Ηγουμενίτσα, Φιλιάτες, Σούλι</span>
+                        <span class="pill">Κεντρική Μακεδονία: Χαλκιδική</span>
+                        <span class="pill">Νότιο Αιγαίο: Μεγίστη</span>
+                        <span class="pill">Πελοπόννησος: Φενεός, Στυμφαλία, Ερμιονίδα</span>
+                        <span class="pill">Στερεά Ελλάδα: Μαντούδι-Λίμνη-Αγία Άννα, Κύμη, Αλιβέρι, Χαλκίδα, Νέα Αρτάκη, Δήλεσι, Στύρα</span>
+                        <span class="pill">Κρήτη: Μακρύς Γιαλός, Ιεράπετρα, Άγιος Ιωάννης</span>
+                        <span class="pill">Ιόνια Νησιά: Απολλώνιοι, Ελλομένο, Λευκάδα</span>
+                    </div>
+                </div>
+                <div style="flex:1; min-width:200px; background:#f7faff; border-radius:1.4rem; padding:1rem 1.2rem;">
+                    <p style="font-weight:600; font-size:0.9rem; color:#0b2b4a; margin-bottom:0.4rem;">📌 Συμπληρωματικές ΥΑ</p>
+                    <ul style="font-size:0.88rem; padding-left:1.2rem; color:#2a405a;">
+                        <li>123049/Α5/18-09-2026 (Β΄ 5838)</li>
+                        <li>131134/Α5/02-10-2026 (Β΄ 6053)</li>
+                        <li>134750/Α5/09-10-2026 (Β΄ 6145)</li>
+                    </ul>
+                    <p style="font-size:0.85rem; margin-top:0.6rem; color:#1e4b7c;">Στρογγυλοποίηση: πάντα τουλάχιστον 1 θέση αν το δεκαδικό υπόλοιπο ≥ 0,5 ή αν μηδενίζεται.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer with direct file references (updated with real links) -->
+        <div class="footer-links">
+            <div class="file-links">
+                <a href="https://drive.google.com/file/d/1r6mkOcAWpiZOS_UdUGmIN1l33KIS9n0q/view?usp=sharing" target="_blank" rel="noopener" class="file-link" title="Εγκύκλιος εφαρμογής (Φ.152/136504/Α5) – 13/10/2026">
+                    <span class="icon">📑</span> Εγκύκλιος εφαρμογής
+                </a>
+                <a href="https://docs.google.com/document/d/1weh67Hn7f56HNx6sDevJ4YBuTHDoJI3C/edit?usp=sharing&ouid=108109467831084723097&rtpof=true&sd=true" target="_blank" rel="noopener" class="file-link" title="ΦΕΚ Β' 6053/07.10.2026 (συμπλήρωση με άρθρα για περιοχές)">
+                    <span class="icon">📰</span> ΦΕΚ Β' 6053 (έγγραφο)
+                </a>
+                <a href="https://drive.google.com/file/d/1IrjwJZXzERyt6KWPdut8aD1-WkBGxyf7/view?usp=sharing" target="_blank" rel="noopener" class="file-link" title="ΥΑ 134750/Α5/09-10-2026 – καθορισμός ποσοστού 2% & διαδικασίας">
+                    <span class="icon">⚖️</span> ΥΑ 134750/Α5
+                </a>
+                <a href="https://drive.google.com/file/d/13ZCPvuohh9YdymRxlcasORRIfxlgiJqu/view?usp=sharing" target="_blank" rel="noopener" class="file-link" title="ΦΕΚ Β' 5838/28.09.2026 – αρχική ΥΑ δικαιούχων">
+                    <span class="icon">📜</span> ΦΕΚ Β' 5838
+                </a>
+                <a href="https://drive.google.com/file/d/138JJ75QLnWLLY9Va6LykCEqm2qJ1BDLz/view?usp=sharing" target="_blank" rel="noopener" class="file-link" title="Συμπληρωματικό έγγραφο / πίνακας">
+                    <span class="icon">📎</span> Συμπληρωματικό αρχείο
+                </a>
+            </div>
+            <div class="signature">
+                <strong>Σοφία Ζαχαράκη</strong> – Υπουργός Παιδείας<br>
+                <span style="font-size:0.8rem;">Καλομοίρα Μαρούγκα – Προϊσταμένη Γεν. Δ/νσης</span>
+            </div>
+        </div>
+
+        <!-- tiny note: links are placeholders for the actual documents -->
+        <div style="font-size:0.75rem; color:#8a9bb0; margin-top:1.2rem; text-align:center; border-top:1px dashed #d4e2f2; padding-top:1rem;">
+            🔗 Οι σύνδεσμοι παραπέμπουν στα επίσημα έγγραφα (αρχεία από Google Drive / Docs). Για την ακριβή αντιστοίχιση επικοινωνήστε με τη Δ/νση Εξετάσεων.
+        </div>
+    </div>
 </body>
 </html>
